@@ -1,0 +1,236 @@
+{
+  "_ghi_chu": "Dữ liệu mẫu cho tham_khao/dashboard_fear_greed_mau.html. Toàn bộ là số giả định. Phân khúc: KHCN (gồm hộ kinh doanh), SME, CIB (doanh nghiệp lớn). Khi có dữ liệu thật, thay bằng output pipeline theo fg_index_spec.md, giữ nguyên cấu trúc.",
+  "cap_nhat": "dữ liệu mẫu",
+  "phan_khuc": {
+    "all": {
+      "ten": "Toàn ngân hàng",
+      "hanh_vi": 58,
+      "tin_tuc": 71,
+      "dong_tien_thuc": 57,
+      "hanh_vi_truoc": [
+        56,
+        52,
+        47
+      ],
+      "tin_tuc_truoc": [
+        68,
+        63,
+        55
+      ]
+    },
+    "KHCN": {
+      "ten": "KHCN",
+      "hanh_vi": 77,
+      "tin_tuc": 74,
+      "dong_tien_thuc": 62,
+      "hanh_vi_truoc": [
+        75,
+        70,
+        61
+      ],
+      "tin_tuc_truoc": [
+        73,
+        69,
+        60
+      ]
+    },
+    "SME": {
+      "ten": "SME",
+      "hanh_vi": 38,
+      "tin_tuc": 52,
+      "dong_tien_thuc": 40,
+      "hanh_vi_truoc": [
+        40,
+        43,
+        47
+      ],
+      "tin_tuc_truoc": [
+        53,
+        55,
+        57
+      ]
+    },
+    "CIB": {
+      "ten": "DN lớn",
+      "hanh_vi": 55,
+      "tin_tuc": 69,
+      "dong_tien_thuc": 60,
+      "hanh_vi_truoc": [
+        54,
+        51,
+        48
+      ],
+      "tin_tuc_truoc": [
+        67,
+        62,
+        56
+      ]
+    }
+  },
+  "thanh_phan_hanh_vi": [
+    {
+      "ten": "Đòn bẩy để đầu tư",
+      "ma": "G01",
+      "mo_ta": "Tiền vay chuyển ngay sang chứng khoán hoặc đặt cọc BĐS",
+      "all": 68,
+      "KHCN": 87,
+      "SME": 48,
+      "CIB": 65
+    },
+    {
+      "ten": "Mua ròng iFund, iBond",
+      "ma": "G03 · S08",
+      "mo_ta": "Dòng tiền vào sản phẩm đầu tư so với bán lại",
+      "all": 72,
+      "KHCN": 91,
+      "SME": 52,
+      "CIB": 69
+    },
+    {
+      "ten": "Rút tiền mặt (đảo dấu)",
+      "ma": "S07",
+      "mo_ta": "Rút qua CDM và tại quầy so với trung bình 50 ngày",
+      "all": 54,
+      "KHCN": 73,
+      "SME": 34,
+      "CIB": 51
+    },
+    {
+      "ten": "Tiền gửi chuyển đi (đảo dấu)",
+      "ma": "F01",
+      "mo_ta": "Chuyển tiền gửi sang ngân hàng khác",
+      "all": 61,
+      "KHCN": 80,
+      "SME": 41,
+      "CIB": 58
+    },
+    {
+      "ten": "Kỳ hạn tiền gửi",
+      "ma": "F02",
+      "mo_ta": "Tỷ trọng kỳ hạn dài so với kỳ hạn ngắn",
+      "all": 47,
+      "KHCN": 66,
+      "SME": 27,
+      "CIB": 44
+    },
+    {
+      "ten": "Định giá tài sản bảo đảm",
+      "ma": "G04",
+      "mo_ta": "Giá định giá so với giá giao dịch thực",
+      "all": 59,
+      "KHCN": 78,
+      "SME": 39,
+      "CIB": 56
+    },
+    {
+      "ten": "Nhu cầu hạn mức doanh nghiệp",
+      "ma": "G05 · F04",
+      "mo_ta": "Xin tăng hạn mức so với ngừng giải ngân",
+      "all": 45,
+      "KHCN": 64,
+      "SME": 25,
+      "CIB": 42
+    }
+  ],
+  "lich_su_12_thang": {
+    "thang": [
+      "T12/25",
+      "T1/26",
+      "T2/26",
+      "T3/26",
+      "T4/26",
+      "T5/26",
+      "T6/26",
+      "T7/26",
+      "T8/26",
+      "T9/26",
+      "T10/26",
+      "T11/26"
+    ],
+    "hanh_vi_all": [
+      41,
+      38,
+      44,
+      47,
+      45,
+      50,
+      53,
+      49,
+      52,
+      56,
+      57,
+      58
+    ],
+    "tin_tuc_all": [
+      45,
+      40,
+      48,
+      55,
+      52,
+      58,
+      62,
+      60,
+      64,
+      68,
+      70,
+      71
+    ]
+  },
+  "su_kien": [
+    {
+      "ngay": "02/11",
+      "tieu_de": "Xung đột quân sự leo thang tại Trung Đông, giá dầu và vàng tăng mạnh",
+      "nhan": [
+        "[FG] loai_tin=TT | o=D | tam_ly=chua_ro | huong=rui_ro | phan_khuc=CIB,SME,KHCN,NH | muc=co_kha_nang_cao",
+        "[FG] loai_tin=TT | o=A | tam_ly=chua_ro | huong=co_hoi | phan_khuc=CIB,KHCN | muc=co_the",
+        "[FG] loai_tin=GL | o=D | tam_ly=chua_ro | huong=rui_ro | phan_khuc=KHCN,NH | muc=gia_thuyet"
+      ]
+    },
+    {
+      "ngay": "30/10",
+      "tieu_de": "Giá cà phê lập đỉnh, người trồng và đại lý đổ xô trữ hàng",
+      "nhan": [
+        "[FG] loai_tin=TT | o=B | tam_ly=tham | huong=co_hoi | phan_khuc=KHCN,CIB | muc=co_kha_nang_cao",
+        "[FG] loai_tin=TT | o=D | tam_ly=chua_ro | huong=rui_ro | phan_khuc=KHCN,SME,CIB | muc=co_the"
+      ]
+    },
+    {
+      "ngay": "28/10",
+      "tieu_de": "Lãi suất cho vay giảm mạnh, chứng khoán tăng nóng",
+      "nhan": [
+        "[FG] loai_tin=TT | o=A | tam_ly=binh_thuong | huong=co_hoi | phan_khuc=KHCN,CIB | muc=co_kha_nang_cao",
+        "[FG] loai_tin=TT | o=B | tam_ly=tham | huong=ca_hai | phan_khuc=KHCN | muc=co_kha_nang_cao"
+      ]
+    },
+    {
+      "ngay": "25/10",
+      "tieu_de": "Lỗ hổng nghiêm trọng trong thư viện phần mềm dùng cho Android và thiết bị thanh toán",
+      "nhan": [
+        "[FG] loai_tin=GL | o=D | tam_ly=chua_ro | huong=rui_ro | phan_khuc=NH,KHCN,SME | muc=co_the"
+      ]
+    },
+    {
+      "ngay": "22/10",
+      "tieu_de": "Tin đồn thanh khoản ở một ngân hàng khác tại một số tỉnh",
+      "nhan": [
+        "[FG] loai_tin=TT | o=C | tam_ly=so | huong=rui_ro | phan_khuc=KHCN | muc=co_kha_nang_cao",
+        "[FG] loai_tin=TT | o=C | tam_ly=so | huong=co_hoi | phan_khuc=KHCN | muc=co_the"
+      ]
+    },
+    {
+      "ngay": "20/10",
+      "tieu_de": "Làn sóng lừa đảo mạo danh giao hàng ở một nước trong khu vực",
+      "nhan": [
+        "[FG] loai_tin=GL | o=D | tam_ly=chua_ro | huong=rui_ro | phan_khuc=KHCN,NH | muc=co_the"
+      ]
+    },
+    {
+      "ngay": "15/10",
+      "tieu_de": "Tỷ lệ sinh giảm xuống mức thấp kỷ lục",
+      "nhan": [
+        "[FG] loai_tin=GT | o=D | tam_ly=chua_ro | huong=rui_ro | phan_khuc=CIB,SME,KHCN | muc=gia_thuyet",
+        "[FG] loai_tin=GT | o=A | tam_ly=chua_ro | huong=co_hoi | phan_khuc=KHCN | muc=co_the"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,261 @@
+table,column,flag,data_type,group,period,agg,description
+cus_coll_transformed,customer_code,0,STRING,key,,,Customer ID (raw). Phase 2 replaces it with cus_key before export.
+cus_coll_transformed,coll_id,0,STRING,b,,,collateral id of customer code
+cus_coll_transformed,nominal_value,0,BIGINT,b,,,nominal value of collateral
+cus_coll_transformed,coll_source,1,string,b,,,"owner of collateral (Cua chinh KH - Khong HT tu von vay, 1 Cua chinh khach hang, Cua chinh KH - Khong HT tu von vay,...)"
+cus_coll_transformed,tsdb_mt,1,string,b,,,kind of collateral
+cus_coll_transformed,ds_partition_date,1,date,timekey,,,"The source ds_partition_date this row was taken from (one per month), kept for audit."
+cus_info,customer_code,0,STRING,key,,,Customer ID (raw). Phase 2 replaces it with cus_key before export.
+cus_info,c_addr_province,1,STRING,b,,,collateral id of customer code
+cus_info,sector,1,BIGINT,b,,,"sector code of customer (classify group of customer retail, corp,...)"
+cus_info,age,1,INT,b,,,age of customer
+cus_info,gender,1,string,b,,,gender of customer
+cus_info,gso_code,1,INT,b,,,"code of industry of corp, sme customer"
+cus_info,customer_segment,1,string,b,,,economy segment of retail customer
+cus_info,priority_class,1,string,b,,,"tier priority of customer (non-priority, inspire, priority, private)"
+cus_info,industry_group,1,string,b,,,"group of industry group of corp, sme customer"
+cus_info,gso_description,1,string,b,,,description for gso code
+cus_lending,customer_code,0,STRING,key,,,Customer ID (raw). Phase 2 replaces it with cus_key before export.
+cus_lending,secured_type,1,STRING,b,,,type of loan: secured or unsecured
+cus_lending,product_name,1,STRING,b,,,name of loan product
+cus_lending,granted_limit,1,BIGINT,b,,,total limit of loan
+cus_lending,total_outstanding,1,Decimal,b,,,outstanding balance of loan
+cus_lending,total_monthly_payment,1,Decimal,timekey,,,"monthly payment of loan (based on which loan product, nice to have value)"
+cus_lending,ds_partition_date,1,date,timekey,,,business date
+cus_nonlending,customer_code,0,STRING,key,,,Customer ID (raw). Phase 2 replaces it with cus_key before export.
+cus_nonlending,ca_eob_balance,1,decimal,b,,,total casa amount of customer end of day
+cus_nonlending,banca_maintenance_time,1,decimal,b,,,number of months from the purchase date of the earliest active insurrance to the present
+cus_nonlending,banca_relationship_time,1,decimal,b,,,number of months from the purchase date of the earliest insurrance to the present
+cus_nonlending,banca_ape,1,decimal,b,,,total annual Premium Equivalent of insurrance
+cus_nonlending,banca_eob_balance,1,decimal,b,,,total balance of insurrance end of business
+cus_nonlending,fund_relationship_time,1,decimal,b,,,number of months from the purchase date of the active fund to the present
+cus_nonlending,fund_total_purchase_value,,decimal,,,,total purchased amount of fund
+cus_nonlending,fund_total_sell_value,,decimal,,,,total sold amount of fund
+cus_nonlending,fund_eob_balance,,decimal,,,,total balance of fund end of business
+cus_nonlending,bond_relationship_time,,decimal,,,,number of months from the purchase date of the earliest bond to the present
+cus_nonlending,bond_total_purchase_value,,decimal,,,,total purchased amount of bond
+cus_nonlending,bond_total_sell_value,,decimal,,,,total sold amount of bond
+cus_nonlending,bond_eob_balance,,decimal,,,,total balance of bond end of business
+cus_nonlending,td_az_relationship_time,,decimal,,,,number of months from the purchase date of the earliest term deposit on online channel to the present
+cus_nonlending,td_az_eob_balance,,decimal,,,,balance of term deposit on online channel end of business
+cus_nonlending,td_az_maintenance_time,,decimal,,,,number of months from the purchase date of the earliest active term deposit on online channel to the present
+cus_nonlending,td_az_current_balance,,decimal,,,,balance of term deposit on online channel end of business
+cus_nonlending,td_mm_relationship_time,,decimal,,,,number of months from the purchase date of the earliest term deposit in branch to the present
+cus_nonlending,td_mm_maintenance_time,,decimal,,,,number of months from the purchase date of the earliest active term deposit in branch to the present
+cus_nonlending,td_mm_eob_balance,,decimal,,,,balance of term deposit on branch end of business
+cus_coll_transformed,ds_parition_date,,date,,,,business date
+cus_coll_transformed,td_mm_current_balance,,decimal,,,,balance of term deposit on branch end of business
+cus_payroll,customer_code,0,STRING,key,,,Customer ID (raw). Phase 2 replaces it with cus_key before export.
+cus_payroll,company_code,1,STRING,b,,,Customer ID of company
+cus_payroll,month_income,1,double,b,,,income of customer
+cus_payroll,month_id,1,date (year month),b,,,paymonth
+cus_persona,customer_code,0,STRING,key,,,Customer ID (raw). Phase 2 replaces it with cus_key before export.
+cus_persona,classfication_value,1,STRING,b,,,persona of customer (1 customer N persona)
+trio_a_hashed_b_credit_history,cusid,0,STRING,key,,,Customer ID (raw). Phase 2 replaces it with cus_key before export.
+trio_a_hashed_b_credit_history,month,0,DATE,timekey,,,"Observation month: the first day of the month. Features describe the customer as of the end of this month. Join every table on (cusid, month)."
+trio_a_hashed_b_credit_history,src_partition_date,0,DATE,timekey,,,"The source ds_partition_date this row was taken from (one per month), kept for audit."
+trio_a_hashed_b_credit_history,b_flag_credit_card_delinq_l1m,1,INT,b,l1m,,Flag a customer as delinquent on credit card for the last 1 month
+trio_a_hashed_b_credit_history,b_flag_mortgage_delinq_l1m,1,INT,b,l1m,,Flag a customer as delinquent on mortgage for the last 1 month
+trio_a_hashed_b_credit_history,b_flag_mortgage_delinq_l3m,1,INT,b,l3m,,Flag a customer as delinquent on mortgage for the last 3 months
+trio_a_hashed_b_credit_history,b_flag_mortgage_delinq_l6m,1,INT,b,l6m,,Flag a customer as delinquent on mortgage for the last 6 months
+trio_a_hashed_b_credit_history,b_flag_mortgage_l1m,1,INT,b,l1m,,Flag a customer having auto mortgage for the last 1 month
+trio_a_hashed_b_credit_history,b_flag_mortgage_l3m,1,INT,b,l3m,,Flag a customer having mortgage for the last 3 months
+trio_a_hashed_b_credit_history,b_flag_mortgage_l6m,1,INT,b,l6m,,Flag a customer having mortgage for the last 6 months
+trio_a_hashed_b_credit_history,b_flag_uns_only_l1m,1,INT,b,l1m,,Flag a customer only having unsecured for the last 1 month
+trio_a_hashed_b_credit_history,bun_num_ctr_cnt_l1m,1,INT,bun,l1m,cnt,Number of unsecured contracts a customer has for the last 1 month
+trio_a_hashed_b_credit_history,bun_num_ctr_cnt_l3m,1,INT,bun,l3m,cnt,Number of unsecured contracts a customer has for the last 3 months
+trio_a_hashed_b_credit_history,bun_num_ctr_cnt_l6m,1,INT,bun,l6m,cnt,Number of unsecured contracts a customer has for the last 6 months
+trio_a_hashed_b_credit_history,bun_per_oustanding_max_l1m,1,DOUBLE,bun,l1m,max,Max unsecured outstanding balance by customer last 1 month
+trio_a_hashed_b_credit_history,bun_per_oustanding_max_l3m,1,DOUBLE,bun,l3m,max,Max unsecured outstanding balance by customer last 3 months
+trio_a_hashed_b_credit_history,b_num_dpd_max_l1m,1,INT,b,l1m,max,Max number of day past due in last 1 month
+trio_a_hashed_b_credit_history,b_bal_dpd_max_l1m,1,DOUBLE,b,l1m,max,Max overdue balance in last 1 month
+trio_a_hashed_b_credit_history,b_ln_class_tcb_cic_max_l1m,1,INT,b,l1m,max,Max loan class at tcb & cic in last 1 month
+trio_a_hashed_b_credit_history_monthly,cusid,0,STRING,key,,,Customer ID (raw). Phase 2 replaces it with cus_key before export.
+trio_a_hashed_b_credit_history_monthly,month,0,DATE,timekey,,,"Observation month: the first day of the month. Features describe the customer as of the end of this month. Join every table on (cusid, month)."
+trio_a_hashed_b_credit_history_monthly,src_partition_date,0,DATE,timekey,,,"The source ds_partition_date this row was taken from (one per month), kept for audit."
+trio_a_hashed_b_credit_history_monthly,b_num_mth_gt0_dpd_cnt_l12m,1,INT,b,l12m,cnt,Number of months customer have DPD > 0 or overdue balance > 0 in last 12 months
+trio_a_hashed_b_credit_history_monthly,b_num_mth_gt0_dpd_cnt_l3m,1,INT,b,l3m,cnt,Number of months customer have DPD > 0 or overdue balance > 0 in last 3 months
+trio_a_hashed_b_credit_history_monthly,b_num_mth_gt0_dpd_cnt_l6m,1,INT,b,l6m,cnt,Number of months customer have DPD > 0 or overdue balance > 0 in last 6 months
+trio_a_hashed_b_credit_history_monthly,b_num_mth_gt30_dpd_cnt_l12m,1,INT,b,l12m,cnt,Number of months customer have DPD > 30 in last 12 months
+trio_a_hashed_b_credit_history_monthly,b_num_mth_gt30_dpd_cnt_l3m,1,INT,b,l3m,cnt,Number of months customer have DPD > 30 in last 3 months
+trio_a_hashed_b_credit_history_monthly,b_num_mth_gt30_dpd_cnt_l6m,1,INT,b,l6m,cnt,Number of months customer have DPD > 30 in last 6 months
+trio_a_hashed_bunod_ur,cusid,0,STRING,key,,,Customer ID (raw). Phase 2 replaces it with cus_key before export.
+trio_a_hashed_bunod_ur,month,0,DATE,timekey,,,"Observation month: the first day of the month. Features describe the customer as of the end of this month. Join every table on (cusid, month)."
+trio_a_hashed_bunod_ur,src_partition_date,0,DATE,timekey,,,"The source ds_partition_date this row was taken from (one per month), kept for audit."
+trio_a_hashed_bunod_ur,bunod_amt_ur_max_l1m,1,DOUBLE,bunod,l1m,max,Utilization rate
+trio_a_hashed_bunod_ur,bunod_amt_ur_max_l3m,1,DOUBLE,bunod,l3m,max,Utilization rate
+trio_a_hashed_bunod_ur,bunod_amt_ur_max_l6m,1,DOUBLE,bunod,l6m,max,Utilization rate
+trio_a_hashed_bunod_ur,bunod_amt_ur_med_l1m,1,DOUBLE,bunod,l1m,med,Utilization rate
+trio_a_hashed_bunod_ur,bunod_amt_ur_med_l3m,1,DOUBLE,bunod,l3m,med,Utilization rate
+trio_a_hashed_bunod_ur,bunod_amt_ur_med_l6m,1,DOUBLE,bunod,l6m,med,Utilization rate
+trio_a_hashed_bunod_ur,bunod_pct_day_ur_gt90pc_cnt_l1m,1,DOUBLE,bunod,l1m,cnt,Proportion of day have utilization rate higher than 90 percent
+trio_a_hashed_bunod_ur,bunod_pct_day_ur_gt90pc_cnt_l3m,1,DOUBLE,bunod,l3m,cnt,Proportion of day have utilization rate higher than 90 percent
+trio_a_hashed_bunod_ur,bunod_pct_day_ur_gt90pc_cnt_l6m,1,DOUBLE,bunod,l6m,cnt,Proportion of day have utilization rate higher than 90 percent
+trio_a_hashed_rbg_a_aum,cusid,0,STRING,key,,,Customer ID (raw). Phase 2 replaces it with cus_key before export.
+trio_a_hashed_rbg_a_aum,month,0,DATE,timekey,,,"Observation month: the first day of the month. Features describe the customer as of the end of this month. Join every table on (cusid, month)."
+trio_a_hashed_rbg_a_aum,src_partition_date,0,DATE,timekey,,,"The source ds_partition_date this row was taken from (one per month), kept for audit."
+trio_a_hashed_rbg_a_aum,a_amt_aum_avg_l1m,1,DECIMAL,a,l1m,avg,Average of customer Asset Under Management amount within last 1 month
+trio_a_hashed_rbg_a_aum,a_amt_aum_avg_l3m,1,DECIMAL,a,l3m,avg,Average of customer Asset Under Management amount within last 3 months
+trio_a_hashed_rbg_a_aum,a_amt_aum_avg_l6m,1,DECIMAL,a,l6m,avg,Average of customer Asset Under Management amount within last 6 months
+trio_a_hashed_rbg_a_aum,a_amt_aum_min_l6m,1,DECIMAL,a,l6m,min,Minimum of customer Asset Under Management amount within last 6 months
+trio_a_hashed_rbg_a_aum,a_amt_aum_slope_l1m,1,DOUBLE,a,l1m,slope,Linear regression slope of customer daily Asset Under Management amount within last 1 month
+trio_a_hashed_rbg_a_aum,a_amt_aum_slope_l3m,1,DOUBLE,a,l3m,slope,Linear regression slope of customer daily Asset Under Management amount within last 3 months
+trio_a_hashed_rbg_a_aum,a_amt_aum_slope_l6m,1,DOUBLE,a,l6m,slope,Linear regression slope of customer daily Asset Under Management amount within last 6 months
+trio_a_hashed_rbg_asv_balance,cusid,0,STRING,key,,,Customer ID (raw). Phase 2 replaces it with cus_key before export.
+trio_a_hashed_rbg_asv_balance,month,0,DATE,timekey,,,"Observation month: the first day of the month. Features describe the customer as of the end of this month. Join every table on (cusid, month)."
+trio_a_hashed_rbg_asv_balance,src_partition_date,0,DATE,timekey,,,"The source ds_partition_date this row was taken from (one per month), kept for audit."
+trio_a_hashed_rbg_asv_balance,asvtd_bal_avg_l1m,1,double,asvtd,l1m,,average balance over the last 1 month
+trio_a_hashed_rbg_asv_balance,asvtd_bal_avg_l3m,1,double,asvtd,l3m,,average balance over the last 3 months
+trio_a_hashed_rbg_asv_balance,asvtd_bal_close_early_avg_l1m,1,double,asvtd,l1m,,average closed early balance over the last 1 month
+trio_a_hashed_rbg_asv_balance,asvtd_bal_close_early_avg_l3m,1,double,asvtd,l3m,,average closed early balance over the last 3 months
+trio_a_hashed_rbg_asv_balance,asvtd_num_acc_close_early_avg_l1m,1,double,asvtd,l1m,,average number of closed early account over the last 1 month
+trio_a_hashed_rbg_asv_balance,asvtd_num_acc_close_early_avg_l3m,1,double,asvtd,l3m,,average number of closed early account over the last 3 months
+trio_a_hashed_rbg_atxca_balance,cusid,0,STRING,key,,,Customer ID (raw). Phase 2 replaces it with cus_key before export.
+trio_a_hashed_rbg_atxca_balance,month,0,DATE,timekey,,,"Observation month: the first day of the month. Features describe the customer as of the end of this month. Join every table on (cusid, month)."
+trio_a_hashed_rbg_atxca_balance,src_partition_date,0,DATE,timekey,,,"The source ds_partition_date this row was taken from (one per month), kept for audit."
+trio_a_hashed_rbg_atxca_balance,atxca_bal_avg_l1m,1,double,atxca,l1m,,average balance over the last 1 month
+trio_a_hashed_rbg_atxca_balance,atxca_bal_avg_l3m,1,double,atxca,l3m,,average balance over the last 3 months
+trio_a_hashed_rbg_atxca_service_channel,cusid,0,STRING,key,,,Customer ID (raw). Phase 2 replaces it with cus_key before export.
+trio_a_hashed_rbg_atxca_service_channel,month,0,DATE,timekey,,,"Observation month: the first day of the month. Features describe the customer as of the end of this month. Join every table on (cusid, month)."
+trio_a_hashed_rbg_atxca_service_channel,src_partition_date,0,DATE,timekey,,,"The source ds_partition_date this row was taken from (one per month), kept for audit."
+trio_a_hashed_rbg_atxca_service_channel,atxca_amt_out_education_sum_l1m,1,DECIMAL,atxca,l1m,sum,transaction amount out for education
+trio_a_hashed_rbg_atxca_service_channel,atxca_amt_out_electricity_sum_l1m,1,DECIMAL,atxca,l1m,sum,transaction amount out for electricity
+trio_a_hashed_rbg_atxca_service_channel,atxca_amt_out_housing_sum_l1m,1,DECIMAL,atxca,l1m,sum,transaction amount out for housing
+trio_a_hashed_rbg_atxca_service_channel,atxca_amt_out_water_sum_l1m,1,DECIMAL,atxca,l1m,sum,transaction amount out for water
+trio_a_hashed_rbg_atxca_service_channel,atxca_amt_sal_max_l1m,1,DECIMAL,atxca,l1m,max,transaction amount in by salary
+trio_a_hashed_rbg_atxca_service_channel,atxca_amt_sal_sum_l1m,1,DECIMAL,atxca,l1m,sum,transaction amount in by salary
+trio_a_hashed_rbg_buncc_payment,cusid,0,STRING,key,,,Customer ID (raw). Phase 2 replaces it with cus_key before export.
+trio_a_hashed_rbg_buncc_payment,month,0,DATE,timekey,,,"Observation month: the first day of the month. Features describe the customer as of the end of this month. Join every table on (cusid, month)."
+trio_a_hashed_rbg_buncc_payment,src_partition_date,0,DATE,timekey,,,"The source ds_partition_date this row was taken from (one per month), kept for audit."
+trio_a_hashed_rbg_buncc_payment,buncc_amt_card_limit_max_l1m,1,DECIMAL,buncc,l1m,max,credit card limit within last 1 month
+trio_a_hashed_rbg_buncc_payment,buncc_amt_card_limit_max_l3m,1,DECIMAL,buncc,l3m,max,credit card limit within last 3 months
+trio_a_hashed_rbg_buncc_payment,buncc_amt_card_limit_max_l6m,1,DECIMAL,buncc,l6m,max,credit card limit within last 6 months
+trio_a_hashed_rbg_buncc_payment,buncc_amt_paid_vs_min_paid_med_l3m,1,DOUBLE,buncc,l3m,med,amount paid divide min paid within last 3 months
+trio_a_hashed_rbg_buncc_payment,buncc_amt_paid_vs_min_paid_med_l6m,1,DOUBLE,buncc,l6m,med,amount paid divide min paid within last 6 months
+trio_a_hashed_rbg_buncc_payment,buncc_amt_ur_max_l1m,1,DECIMAL,buncc,l1m,max,credit card utilization rate within last 1 month
+trio_a_hashed_rbg_buncc_payment,buncc_amt_ur_max_l3m,1,DECIMAL,buncc,l3m,max,credit card utilization rate within last 3 months
+trio_a_hashed_rbg_buncc_payment,buncc_amt_ur_max_l6m,1,DECIMAL,buncc,l6m,max,credit card utilization rate within last 6 months
+trio_a_hashed_rbg_buncc_payment,buncc_amt_ur_med_l1m,1,DOUBLE,buncc,l1m,med,credit card utilization rate within last 1 month
+trio_a_hashed_rbg_buncc_payment,buncc_amt_ur_med_l3m,1,DOUBLE,buncc,l3m,med,credit card utilization rate within last 3 months
+trio_a_hashed_rbg_buncc_payment,buncc_amt_ur_med_l6m,1,DOUBLE,buncc,l6m,med,credit card utilization rate within last 6 months
+trio_a_hashed_rbg_buncc_payment,buncc_num_day_ur_gt90pc_cnt_l3m,1,LONG,buncc,l3m,cnt,credit card number of days utilization rate higher than 90 percent within last 3 months
+trio_a_hashed_rbg_buncc_payment,buncc_num_day_ur_gt90pc_cnt_l6m,1,LONG,buncc,l6m,cnt,credit card number of days utilization rate higher than 90 percent within last 6 months
+trio_a_hashed_rbg_buncc_payment,buncc_num_min_paid_cnt_l3m,1,LONG,buncc,l3m,cnt,number of min paid within last 3 months
+trio_a_hashed_rbg_buncc_payment,buncc_num_min_paid_cnt_l6m,1,LONG,buncc,l6m,cnt,number of min paid within last 6 months
+trio_a_hashed_rbg_cpb,cusid,0,STRING,key,,,Customer ID (raw). Phase 2 replaces it with cus_key before export.
+trio_a_hashed_rbg_cpb,month,0,DATE,timekey,,,"Observation month: the first day of the month. Features describe the customer as of the end of this month. Join every table on (cusid, month)."
+trio_a_hashed_rbg_cpb,src_partition_date,0,DATE,timekey,,,"The source ds_partition_date this row was taken from (one per month), kept for audit."
+trio_a_hashed_rbg_cpb,cpb_num_pbb_lv_ul_cnt,1,bigint,Credit history features (pastborrowing behavior),,cnt,Number of active unsecured contract
+trio_a_hashed_corp_b,cusid,0,STRING,key,,,Customer ID (raw). Phase 2 replaces it with cus_key before export.
+trio_a_hashed_corp_b,month,0,DATE,timekey,,,"Observation month: the first day of the month. Features describe the customer as of the end of this month. Join every table on (cusid, month)."
+trio_a_hashed_corp_b,src_partition_date,0,DATE,timekey,,,"The source ds_partition_date this row was taken from (one per month), kept for audit."
+trio_a_hashed_corp_b,b_flag_dpd_gt0_sum_l3m,1,int,Deliquency,L3M,sum,Sum of flag customer has day past due > 0 in the month in last 3 months
+trio_a_hashed_corp_b,b_flag_dpd_gt0_sum_l6m,1,int,Deliquency,L6M,sum,Sum of flag customer has day past due > 0 in the month in last 6 months
+trio_a_hashed_corp_b,b_max_monthly_dpd_max_l12m,1,int,Deliquency,L12M,max,Maximum of day past due of the customer in last 12 months
+trio_a_hashed_corp_b,b_max_monthly_dpd_max_l1m,1,int,Deliquency,L1M,max,Maximum of day past due of the customer in last 1 month
+trio_a_hashed_corp_b,b_max_monthly_dpd_max_l3m,1,int,Deliquency,L3M,max,Maximum of day past due of the customer in last 3 months
+trio_a_hashed_corp_b,b_max_monthly_dpd_max_l6m,1,int,Deliquency,L6M,max,Maximum of day past due of the customer in last 6 months
+trio_a_hashed_corp_b,b_monthend_coll_value_min_l1m,1,double,LTV,L1M,min,Minimum of Collateral value at month-end in last 1 month
+trio_a_hashed_corp_b,b_monthend_od_ur_avg_l3m,1,double,Utilization,L3M,average,Average of Utilization rate of overdraft limit at month-end in last 3 months
+trio_a_hashed_corp_b,b_monthend_od_ur_max_l1m,1,double,Utilization,L1M,max,Maximum of Utilization rate of overdraft limit at month-end in last 1 month
+trio_a_hashed_corp_b,b_monthend_od_ur_max_l3m,1,double,Utilization,L3M,max,Maximum of Utilization rate of overdraft limit at month-end in last 3 months
+trio_a_hashed_corp_b,b_monthend_on_os_max_l1m,1,double,FinancialObligation,L1M,max,"Maximum of Total on-balance sheet outstanding at month-end (Loan, Bond) in last 1 month"
+trio_a_hashed_corp_atxca_balance,cusid,0,STRING,key,,,Customer ID (raw). Phase 2 replaces it with cus_key before export.
+trio_a_hashed_corp_atxca_balance,month,0,DATE,timekey,,,"Observation month: the first day of the month. Features describe the customer as of the end of this month. Join every table on (cusid, month)."
+trio_a_hashed_corp_atxca_balance,src_partition_date,0,DATE,timekey,,,"The source ds_partition_date this row was taken from (one per month), kept for audit."
+trio_a_hashed_corp_atxca_balance,atxca_bal_fcy_avg_l1m,1,double,atxca,l1m,avg,average daily foreign currency balance for current accounts over the last 1 month
+trio_a_hashed_corp_atxca_balance,atxca_bal_fcy_avg_l3m,1,double,atxca,l3m,avg,average daily foreign currency balance for current accounts over the last 3 months
+trio_a_hashed_corp_atxca_txn,cusid,0,STRING,key,,,Customer ID (raw). Phase 2 replaces it with cus_key before export.
+trio_a_hashed_corp_atxca_txn,month,0,DATE,timekey,,,"Observation month: the first day of the month. Features describe the customer as of the end of this month. Join every table on (cusid, month)."
+trio_a_hashed_corp_atxca_txn,src_partition_date,0,DATE,timekey,,,"The source ds_partition_date this row was taken from (one per month), kept for audit."
+trio_a_hashed_corp_atxca_txn,atxca_num_month_have_txn_cnt_l3m,1,bigint,atxca,l3m,cnt,number of months having transactions last 3 months
+trio_a_hashed_corp_atxca_txn,atxca_num_month_have_txn_cnt_l6m,1,bigint,atxca,l6m,cnt,number of months having transactions last 6 months
+trio_a_hashed_corp_atxca_txn,atxca_num_month_have_txn_cnt_l12m,1,bigint,atxca,l12m,cnt,number of months having transactions last 12 months
+trio_a_hashed_corp_atxca_txn,atxca_txn_amt_in_top5day_monthly_avg_l3m,1,"decimal(38,6)",atxca,l3m,avg,The average value in 3 months of inbound transaction amounts during the five days with the highest cash inflows
+trio_a_hashed_corp_atxca_txn,atxca_txn_amt_in_top5day_monthly_avg_l6m,1,"decimal(38,6)",atxca,l6m,avg,The average value in 6 months of inbound transaction amounts during the five days with the highest cash inflows
+trio_a_hashed_corp_atxca_txn,atxca_txn_amt_in_top5day_monthly_avg_l12m,1,"decimal(38,6)",atxca,l12m,avg,The average value in 12 months of inbound transaction amounts during the five days with the highest cash inflows
+trio_a_hashed_corp_atxca_txn,atxca_txn_amt_in_top5day_monthly_max_l3m,1,"decimal(38,6)",atxca,l3m,max,The highest value in 3 months of inbound transaction amounts during the five days with the highest cash inflows
+trio_a_hashed_corp_atxca_txn,atxca_txn_amt_in_top5day_monthly_max_l6m,1,"decimal(38,6)",atxca,l6m,max,The highest value in 6 months of inbound transaction amounts during the five days with the highest cash inflows
+trio_a_hashed_corp_atxca_txn,atxca_txn_amt_in_top5day_monthly_max_l12m,1,"decimal(38,6)",atxca,l12m,max,The highest value in 12 months of inbound transaction amounts during the five days with the highest cash inflows
+trio_a_hashed_corp_atxca_txn,atxca_txn_amt_in_top5day_monthly_min_l3m,1,"decimal(38,6)",atxca,l3m,min,The minimum value in 3 months of inbound transaction amounts during the five days with the highest cash inflows
+trio_a_hashed_corp_atxca_txn,atxca_txn_amt_in_top5day_monthly_min_l6m,1,"decimal(38,6)",atxca,l6m,min,The minimum value in 6 months of inbound transaction amounts during the five days with the highest cash inflows
+trio_a_hashed_corp_atxca_txn,atxca_txn_amt_in_top5day_monthly_min_l12m,1,"decimal(38,6)",atxca,l12m,min,The minimum value in 12 months of inbound transaction amounts during the five days with the highest cash inflows
+trio_a_hashed_corp_atxca_txn,atxca_txn_num_sum_l3m,1,bigint,atxca,l3m,sum,The number of transactions last 3 months
+trio_a_hashed_corp_atxca_txn,atxca_txn_num_sum_l6m,1,bigint,atxca,l6m,sum,The number of transactions last 6 months
+trio_a_hashed_corp_atxca_txn,atxca_txn_num_sum_l12m,1,bigint,atxca,l12m,sum,The number of transactions last 12 months
+trio_a_hashed_corp_atxca_txn,atxca_num_day_have_txn_avg_l3m,1,"decimal(38,6)",atxca,l3m,avg,The average of number of days having transactions last 3 months
+trio_a_hashed_corp_atxca_txn,atxca_num_day_have_txn_avg_l6m,1,"decimal(38,6)",atxca,l6m,avg,The average of number of days having transactions last 6 months
+trio_a_hashed_corp_atxca_txn,atxca_num_day_have_txn_avg_l12m,1,"decimal(38,6)",atxca,l12m,avg,The average of number of days having transactions last 12 months
+trio_a_hashed_corp_atxca_txn,atxca_num_day_have_txn_min_l3m,1,int,atxca,l3m,min,The minimum of number of days having transactions last 3 months
+trio_a_hashed_corp_atxca_txn,atxca_num_day_have_txn_min_l6m,1,int,atxca,l6m,min,The minimum of number of days having transactions last 6 months
+trio_a_hashed_corp_atxca_txn,atxca_num_day_have_txn_min_l12m,1,int,atxca,l12m,min,The minimum of number of days having transactions last 12 months
+trio_a_hashed_corp_atxca_txn,atxca_num_day_have_txn_max_l3m,1,int,atxca,l3m,max,The maximum of number of days having transactions last 12 months
+trio_a_hashed_corp_atxca_txn,atxca_num_day_have_txn_max_l6m,1,int,atxca,l6m,max,The maximum of number of days having transactions last 12 months
+trio_a_hashed_corp_atxca_txn,atxca_num_day_have_txn_max_l12m,1,int,atxca,l12m,max,The maximum of number of days having transactions last 12 months
+trio_a_hashed_corp_atxca_txn,atxca_rto_num_day_higher_100m_vs_num_day_have_txn_avg_l3m,1,"decimal(38,6)",atxca,l3m,avg,The 3-month average of the ratio between the number of days with transactions over 100 million and the number of transaction days per month
+trio_a_hashed_corp_atxca_txn,atxca_rto_num_day_higher_100m_vs_num_day_have_txn_avg_l6m,1,"decimal(38,6)",atxca,l6m,avg,The 6-month average of the ratio between the number of days with transactions over 100 million and the number of transaction days per month
+trio_a_hashed_corp_atxca_txn,atxca_rto_num_day_higher_100m_vs_num_day_have_txn_avg_l12m,1,"decimal(38,6)",atxca,l12m,avg,The 12-month average of the ratio between the number of days with transactions over 100 million and the number of transaction days per month
+trio_a_hashed_corp_atxca_txn,atxca_rto_txn_amt_in_vs_num_day_have_txn_in_avg_l3m,1,"decimal(38,6)",atxca,l3m,avg,"Amount of inflow transactions per day that has inflow transactions, average 3 months."
+trio_a_hashed_corp_atxca_txn,atxca_rto_txn_amt_in_vs_num_day_have_txn_in_avg_l6m,1,"decimal(38,6)",atxca,l6m,avg,"Amount of inflow transactions per day that has inflow transactions, average 6 months."
+trio_a_hashed_corp_atxca_txn,atxca_rto_txn_amt_in_vs_num_day_have_txn_in_avg_l12m,1,"decimal(38,6)",atxca,l12m,avg,"Amount of inflow transactions per day that has inflow transactions, average 12 months."
+trio_a_hashed_corp_atxca_txn,atxca_rto_txn_amt_out_vs_txn_amt_avg_l3m,1,"decimal(38,6)",atxca,l3m,avg,The 3-month average of the ratio of outgoing funds to the total inflows and outflows
+trio_a_hashed_corp_atxca_txn,atxca_rto_txn_amt_out_vs_txn_amt_avg_l6m,1,"decimal(38,6)",atxca,l6m,avg,The 6-month average of the ratio of outgoing funds to the total inflows and outflows
+trio_a_hashed_corp_atxca_txn,atxca_rto_txn_amt_out_vs_txn_amt_avg_l12m,1,"decimal(38,6)",atxca,l12m,avg,The 12-month average of the ratio of outgoing funds to the total inflows and outflows
+trio_a_hashed_corp_atxca_txn,atxca_rto_txn_amt_out_top5day_monthly_vs_txn_amt_avg_l3m,1,"decimal(38,6)",atxca,l3m,avg,The 3-month average of the ratio between the total cash outflow value in the 10 days with the highest cash outflows and the total cash in and outflow value
+trio_a_hashed_corp_atxca_txn,atxca_rto_txn_amt_out_top5day_monthly_vs_txn_amt_avg_l6m,1,"decimal(38,6)",atxca,l6m,avg,The 6-month average of the ratio between the total cash outflow value in the 10 days with the highest cash outflows and the total cash in and outflow value
+trio_a_hashed_corp_atxca_txn,atxca_rto_txn_amt_out_top5day_monthly_vs_txn_amt_avg_l12m,1,"decimal(38,6)",atxca,l12m,avg,The 12-month average of the ratio between the total cash outflow value in the 10 days with the highest cash outflows and the total cash in and outflow value
+trio_a_hashed_corp_atxca_txn,atxca_rto_txn_amt_in_top10day_monthly_vs_txn_amt_in_avg_l3m,1,"decimal(38,6)",atxca,l3m,avg,The 3-month average of the ratio between the total cash inflow value in the 10 days with the highest cash inflows and the total cash inflow value
+trio_a_hashed_corp_atxca_txn,atxca_rto_txn_amt_in_top10day_monthly_vs_txn_amt_in_avg_l6m,1,"decimal(38,6)",atxca,l6m,avg,The 6-month average of the ratio between the total cash inflow value in the 10 days with the highest cash inflows and the total cash inflow value
+trio_a_hashed_corp_atxca_txn,atxca_rto_txn_amt_in_top10day_monthly_vs_txn_amt_in_avg_l12m,1,"decimal(38,6)",atxca,l12m,avg,The 12-month average of the ratio between the total cash inflow value in the 10 days with the highest cash inflows and the total cash inflow value
+trio_a_hashed_corp_atxca_txn,atxca_rto_txn_amt_in_top5day_monthly_vs_txn_amt_avg_l3m,1,"decimal(38,6)",atxca,l3m,avg,The 3-month average of the ratio between the total cash inflow value in the 10 days with the highest cash inflows and the total cash in and outflow value
+trio_a_hashed_corp_atxca_txn,atxca_rto_txn_amt_in_top5day_monthly_vs_txn_amt_avg_l6m,1,"decimal(38,6)",atxca,l6m,avg,The 6-month average of the ratio between the total cash inflow value in the 10 days with the highest cash inflows and the total cash in and outflow value
+trio_a_hashed_corp_atxca_txn,atxca_rto_txn_amt_in_top5day_monthly_vs_txn_amt_avg_l12m,1,"decimal(38,6)",atxca,l12m,avg,The 12-month average of the ratio between the total cash inflow value in the 10 days with the highest cash inflows and the total cash in and outflow value
+trio_a_hashed_corp_atxca_txn,atxca_rto_txn_amt_payroll_vs_txn_num_payroll_avg_l3m,1,"decimal(38,6)",atxca,l3m,avg,The 3-month average of the ratio between payroll transaction amount and number of payroll transactions (0 value means no payroll)
+trio_a_hashed_corp_atxca_txn,atxca_rto_txn_amt_payroll_vs_txn_num_payroll_avg_l6m,1,"decimal(38,6)",atxca,l6m,avg,The 6-month average of the ratio between payroll transaction amount and number of payroll transactions (0 value means no payroll)
+trio_a_hashed_corp_atxca_txn,atxca_rto_txn_amt_payroll_vs_txn_num_payroll_avg_l12m,1,"decimal(38,6)",atxca,l12m,avg,The 12-month average of the ratio between payroll transaction amount and number of payroll transactions (0 value means no payroll)
+trio_a_hashed_corp_atxca_txn,atxca_rto_txn_num_fcy_vs_txn_num_avg_l3m,1,"decimal(38,6)",atxca,l3m,avg,The 3-month average of the ratio between number of foreign currency transaction and number of transactions
+trio_a_hashed_corp_atxca_txn,atxca_rto_txn_num_fcy_vs_txn_num_avg_l6m,1,"decimal(38,6)",atxca,l6m,avg,The 6-month average of the ratio between number of foreign currency transaction and number of transactions
+trio_a_hashed_corp_atxca_txn,atxca_rto_txn_num_fcy_vs_txn_num_avg_l12m,1,"decimal(38,6)",atxca,l12m,avg,The 12-month average of the ratio between number of foreign currency transaction and number of transactions
+trio_a_hashed_corp_atxca_txn,atxca_rto_num_day_higher_50m_vs_num_day_have_txn_avg_l3m,1,"decimal(38,6)",atxca,l3m,avg,The 3-month average of the ratio between the number of days with transactions over 50 million and the number of transaction days per month
+trio_a_hashed_corp_atxca_txn,atxca_rto_num_day_higher_50m_vs_num_day_have_txn_avg_l6m,1,"decimal(38,6)",atxca,l6m,avg,The 6-month average of the ratio between the number of days with transactions over 50 million and the number of transaction days per month
+trio_a_hashed_corp_atxca_txn,atxca_rto_num_day_higher_50m_vs_num_day_have_txn_avg_l12m,1,"decimal(38,6)",atxca,l12m,avg,The 12-month average of the ratio between the number of days with transactions over 50 million and the number of transaction days per month
+trio_a_hashed_corp_atxca_txn,atxca_txn_num_in_avg_l3v6m,1,"decimal(38,6)",atxca,l3v6m,avg/avg,"Average number of inflow transactions, average last 3 months vs last 6 months"
+trio_a_hashed_corp_atxca_txn,atxca_txn_num_in_avg_l3v12m,1,"decimal(38,6)",atxca,l3v12m,avg/avg,"Average number of inflow transactions, average last 3 months vs last 12 months"
+trio_a_hashed_corp_atxca_txn,atxca_txn_num_in_avg_l6v12m,1,"decimal(38,6)",atxca,l6v12m,avg/avg,"Average number of inflow transactions, average last 6 months vs last 12 months"
+trio_a_hashed_corp_atxca_txn,atxca_txn_num_out_avg_l3v6m,1,"decimal(38,6)",atxca,l3v6m,avg/avg,"Number of outflow transactions, average last 3 months vs last 6 months"
+trio_a_hashed_corp_atxca_txn,atxca_txn_num_out_avg_l3v12m,1,"decimal(38,6)",atxca,l3v12m,avg/avg,"Number of outflow transactions, average last 3 months vs last 12 months"
+trio_a_hashed_corp_atxca_txn,atxca_txn_num_out_avg_l6v12m,1,"decimal(38,6)",atxca,l6v12m,avg/avg,"Number of outflow transactions, average last 6 months vs last 12 months"
+trio_a_hashed_corp_atxca_txn,atxca_txn_amt_in_avg_l3v6m,1,"decimal(38,6)",atxca,l3v6m,avg/avg,Average ratio of inflow transaction amount over the last 3 months to inflow transaction amount over the last 6 months
+trio_a_hashed_corp_atxca_txn,atxca_txn_amt_in_avg_l3v12m,1,"decimal(38,6)",atxca,l3v12m,avg/avg,Average ratio of inflow transaction amount over the last 3 months to inflow transaction amount over the last 12 months
+trio_a_hashed_corp_atxca_txn,atxca_txn_amt_in_avg_l6v12m,1,"decimal(38,6)",atxca,l6v12m,avg/avg,Average ratio of inflow transaction amount over the last 6 months to inflow transaction amount over the last 12 months
+trio_a_hashed_corp_atxca_txn,atxca_txn_amt_out_avg_l3v6m,1,"decimal(38,6)",atxca,l3v6m,avg/avg,Average ratio of outflow transaction amount over the last 3 months to outflow transaction amount over the last 6 months
+trio_a_hashed_corp_atxca_txn,atxca_txn_amt_out_avg_l3v12m,1,"decimal(38,6)",atxca,l3v12m,avg/avg,Average ratio of outflow transaction amount over the last 3 months to outflow transaction amount over the last 12 months
+trio_a_hashed_corp_atxca_txn,atxca_txn_amt_out_avg_l6v12m,1,"decimal(38,6)",atxca,l6v12m,avg/avg,Average ratio of outflow transaction amount over the last 6 months to outflow transaction amount over the last 12 months
+trio_a_hashed_corp_atxca_txn,atxca_num_day_have_txn_avg_l3v6m,1,"decimal(38,6)",atxca,l3v6m,avg/avg,Average ratio of number of days having transactions over the last 3 months to number of days having transactions over the last 6 months
+trio_a_hashed_corp_atxca_txn,atxca_num_day_have_txn_avg_l3v12m,1,"decimal(38,6)",atxca,l3v12m,avg/avg,Average ratio of number of days having transactions over the last 3 months to number of days having transactions over the last 12 months
+trio_a_hashed_corp_atxca_txn,atxca_num_day_have_txn_avg_l6v12m,1,"decimal(38,6)",atxca,l6v12m,avg/avg,Average ratio of number of days having transactions over the last 6 months to number of days having transactions over the last 12 months
+trio_a_hashed_corp_atxca_txn,atxca_rto_num_acc_active_avg_vs_num_day_have_txn_in_avg_l3m,1,"decimal(38,6)",atxca,l3m,avg/avg,The ratio of the average number of active accounts used to perform transactions over the past 3 months to the average number of days with transactions in the same 3-month period.
+trio_a_hashed_corp_atxca_txn,atxca_rto_num_acc_active_avg_vs_num_day_have_txn_in_avg_l6m,1,"decimal(38,6)",atxca,l6m,avg/avg,The ratio of the average number of active accounts used to perform transactions over the past 6 months to the average number of days with transactions in the same 6-month period.
+trio_a_hashed_corp_atxca_txn,atxca_rto_num_acc_active_avg_vs_num_day_have_txn_in_avg_l12m,1,"decimal(38,6)",atxca,l12m,avg/avg,The ratio of the average number of active accounts used to perform transactions over the past 12 months to the average number of days with transactions in the same 12-month period.
+trio_a_hashed_corp_atxca_txn,atxca_txn_amt_out_top10day_monthly_vs_txn_amt_out_minl3_v_min6m,1,"decimal(38,6)",atxca,l3v6m,min/min,"Ratio of the total amount of outflow transactions of 10 days with largest outflow transaction amount and total amount of outflow transactions, min last 3 months vs last 6 months"
+trio_a_hashed_corp_atxca_txn,atxca_txn_amt_out_top10day_monthly_vs_txn_amt_out_minl3_v_min12m,1,"decimal(38,6)",atxca,l3v12m,min/min,"Ratio of the total amount of outflow transactions of 10 days with largest outflow transaction amount and total amount of outflow transactions, min last 3 months vs last 12 months"
+trio_a_hashed_corp_atxca_txn,atxca_txn_amt_out_top10day_monthly_vs_txn_amt_out_minl6_v_min12m,1,"decimal(38,6)",atxca,l6v12m,min/min,"Ratio of the total amount of outflow transactions of 10 days with largest outflow transaction amount and total amount of outflow transactions, min last 6 months vs last 12 months"
+trio_a_hashed_corp_atxca_txn,atxca_num_day_have_txn_l1_v_avgl3m,1,"decimal(38,6)",atxca,l1vl3m,value/avg,"The number of days having transactions, last 1 month vs the average over last 3 months"
+trio_a_hashed_corp_atxca_txn,atxca_num_day_have_txn_l1_v_avgl6m,1,"decimal(38,6)",atxca,l1vl6m,value/avg,"The number of days having transactions, last 1 month vs the average over last 6 months"
+trio_a_hashed_corp_atxca_txn,atxca_num_day_have_txn_l1_v_avgl12m,1,"decimal(38,6)",atxca,l1vl12m,value/avg,"The number of days having transactions, last 1 month vs the average over last 12 months"
+trio_a_hashed_corp_atxca_txn,atxca_num_day_have_txn_vola_l12m,1,"decimal(38,6)",atxca,l12m,(max-min)/sum,Volatility of number of days having transactions over last 12 months
+trio_a_hashed_corp_atxca_txn,atxca_txn_amt_out_top5day_monthly_vs_txn_amt_l1_diff_avgl6m,1,"decimal(38,6)",atxca,l1_l6m,value-avg,"Ratio between the total cash outflow value in the 5 days with the highest cash outflows and the total cash in and outflow value, last month subtracts the average of last 6 months"
+trio_a_hashed_corp_atxca_txn_ews,cusid,0,STRING,key,,,Customer ID (raw). Phase 2 replaces it with cus_key before export.
+trio_a_hashed_corp_atxca_txn_ews,month,0,DATE,timekey,,,"Observation month: the first day of the month. Features describe the customer as of the end of this month. Join every table on (cusid, month)."
+trio_a_hashed_corp_atxca_txn_ews,src_partition_date,0,DATE,timekey,,,"The source ds_partition_date this row was taken from (one per month), kept for audit."
+trio_a_hashed_corp_atxca_txn_ews,atxca_net_flow_std_l6m,1,double,atxca,l6m,std,The standard deviation of net flow (outflow minus inflow) last 6 months
+trio_a_hashed_corp_atxca_txn_ews,atxca_num_day_have_txn_in_sum_l1m,1,double,atxca,l1m,sum,The sum of number of days having inbound transactions last 1 month
+trio_a_hashed_corp_atxca_txn_ews,atxca_num_day_have_txn_in_sum_l3m,1,double,atxca,l3m,sum,The sum of number of days having inbound transactions last 3 months
+trio_a_hashed_corp_atxca_txn_ews,atxca_num_day_have_txn_in_sum_l6m,1,double,atxca,l6m,sum,The sum of number of days having inbound transactions last 6 months
+trio_a_hashed_corp_atxca_txn_ews,atxca_txn_amt_fcy_avg_l3m,1,double,atxca,l3m,avg,The average of foreign currency transaction amount last 3 months
+trio_a_hashed_corp_atxca_txn_ews,atxca_txn_amt_fcy_avg_l6m,1,double,atxca,l6m,avg,The average of foreign currency transaction amount last 6 months
+trio_a_hashed_corp_atxca_txn_ews,atxca_txn_amt_in_avg_l12m,1,double,atxca,l12m,avg,The average of inbound transaction amount last 12 months
+trio_a_hashed_corp_atxca_txn_ews,atxca_txn_amt_in_avg_l3m,1,double,atxca,l3m,avg,The average of inbound transaction amount last 3 months
+trio_a_hashed_corp_atxca_txn_ews,atxca_txn_amt_in_avg_l6m,1,double,atxca,l6m,avg,The average of inbound transaction amount last 6 months
+trio_a_hashed_corp_atxca_txn_ews,atxca_txn_amt_payroll_avg_l3m,1,double,atxca,l3m,avg,The average of payroll transaction amount last 3 months
+trio_a_hashed_corp_atxca_txn_ews,atxca_txn_amt_payroll_avg_l6m,1,double,atxca,l6m,avg,The average of payroll transaction amount last 6 months
